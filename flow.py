@@ -1,6 +1,8 @@
 from prefect import flow, task
 from prefect.blocks.system import Secret
+from prefect.context import get_run_context, get_settings_context
 import requests
+import json
 
 secret_block = Secret.load("basketball-api-key")
 api_key = secret_block.get()
@@ -10,7 +12,7 @@ headers = {
 	    "X-RapidAPI-Host": "api-basketball.p.rapidapi.com"
 }
 
-@task()
+@task(log_prints=True)
 def get_league() -> int:
     url = base_url + "/leagues"
     querystring = {"season":"2022-2023", "type":"league", "country" : "USA", "name" : "NCAA"}
@@ -22,7 +24,7 @@ def get_league() -> int:
     print(response.text)
     return 0
 
-@flow()
+@flow(log_prints=True)
 def main():
     league_id = get_league()
 

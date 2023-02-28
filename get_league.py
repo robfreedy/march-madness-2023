@@ -19,18 +19,8 @@ def get_standings() -> int:
     querystring = {"season":"2022-2023", "type":"league", "country" : "USA", "name" : "NCAA"}
     response = requests.request("GET", url, headers=headers, params=querystring)
     print(response.text)
-    querystring = {"league":"116","season":"2022-2023"}
-    url = "https://api-basketball.p.rapidapi.com/standings"
-    response = requests.request("GET", url, headers=headers, params=querystring)
-    print(response.text)
     return 0
-
-@task
-def pick_winner():
-    print("Pick the winner based on record, quadrant, and seeding")
 
 @flow(log_prints=True)
 def main():
     league_id = get_standings()
-
-main()

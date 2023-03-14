@@ -112,5 +112,5 @@ def main():
         print(f"{i}. {value['name']}")
         i += 1
     
-if __name__ == "main":
+if __name__ == "__main__":
     main()

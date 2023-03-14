@@ -36,7 +36,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: prefect-agent
-  namespace: default
+  namespace: prefect2
 rules:
   - apiGroups: [""]
     resources: ["pods", "pods/log", "pods/status"]
@@ -49,7 +49,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: prefect-agent-role-binding
-  namespace: default
+  namespace: prefect2
 subjects:
   - kind: ServiceAccount
     name: default
